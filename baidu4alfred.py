@@ -29,14 +29,16 @@ def join_xml(text):
     result = ['<?xml version="1.0"?>', '<items>']
     json_data.insert(0, query)
 
+    i = 0
     for item in json_data:
         word = quote(item.encode('utf-8'))
         url = 'http://www.baidu.com/s?wd=' + word
-        result.append('<item uid="baidusearch" arg="' + url + '">');
+        result.append('<item uid="baidusearch'+str(i)+'" arg="' + url + '">');
         result.append('<title>' + item + '</title>')
         result.append('<subtitle>baidu search</subtitle>')
         result.append('<icon>icon.png</icon>')
         result.append('</item>')  
+        i += 1
 
     result.append('</items>')
     xml = ''.join(result)    
