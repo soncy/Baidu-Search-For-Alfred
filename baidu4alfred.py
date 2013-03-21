@@ -27,13 +27,7 @@ def join_xml(text):
     json_data = json.loads(match.group(2))
 
     result = ['<?xml version="1.0"?>', '<items>']
-
-    if len(json_data) == 0:
-        result.append('<item uid="baidusearch" arg="http://www.baidu.com/s?wd=' + quote(query) + '">')
-        result.append('<title>直接在百度中搜索“' + query + '”</title>')
-        result.append('<subtitle>baidusearch</subtitle>')
-        result.append('<icon>icon.png</icon>')
-        result.append('</item>')
+    json_data.insert(0, query)
 
     for item in json_data:
         word = quote(item.encode('utf-8'))
